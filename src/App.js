@@ -18,7 +18,7 @@ function App() {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
-      setLoading(false);
+      setTimeout(() => setLoading(false), 1000); // add delay
     });
     return () => unsubscribe();
   }, []);
@@ -51,14 +51,16 @@ function App() {
     signOut(auth);
   }
 
+  console.log('Loading state:', loading);
+
+
   if (loading) {
     return (
       <div className="skeleton-loading">
-        {/* You can customize this with CSS */}
         <p>Loading...</p>
       </div>
     );
-  };
+  }
 
   return (
     <div className="App">
