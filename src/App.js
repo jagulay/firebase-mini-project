@@ -24,26 +24,32 @@ function App() {
   }, []);
 
   function register() {
+    setLoading(true)
     createUserWithEmailAndPassword(auth, 'arra@email.com', 'password123')
       .then((user) => {
         console.log(user);
         setErrorMessage('');
+        setLoading(false)
       })
       .catch((error) => {
         console.log(error);
         setErrorMessage(error.message);
+        setLoading(false)
       });
   }
 
   function login() {
+    setLoading(true)
     signInWithEmailAndPassword(auth, 'arra@email.com', 'password123')
       .then((user) => {
         console.log(user);
         setErrorMessage('');
+        setLoading(false)
       })
       .catch((error) => {
         console.log(error.message);
         setErrorMessage('The username and password you entered are incorrect.');
+        setLoading(false)
       });
   }
 
